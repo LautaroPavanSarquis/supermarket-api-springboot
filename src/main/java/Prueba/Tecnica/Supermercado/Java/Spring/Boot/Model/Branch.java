@@ -1,17 +1,17 @@
 package Prueba.Tecnica.Supermercado.Java.Spring.Boot.Model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
+import lombok.*;
+import jakarta.persistence.Id;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
+@Entity
 public class Branch {
 
     @Id

@@ -12,20 +12,18 @@ import java.util.List;
 @Builder
 public class SaleDto {
 
-    //Datos Venta
+    //Sale Data
     private Long id;
     private LocalDate date;
     private String state;
     private Double total;
 
-    //datos Sucursal
+    //Branch data
     private Long branchId;
 
-    //Datos Detalle
+    //Detail data
     private List<SaleDetailDto> detail;
 
-    //Total de la venta
-    private Double Total;
 
 
 }

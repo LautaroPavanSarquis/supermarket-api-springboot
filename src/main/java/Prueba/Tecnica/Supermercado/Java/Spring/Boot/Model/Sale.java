@@ -1,11 +1,8 @@
 package Prueba.Tecnica.Supermercado.Java.Spring.Boot.Model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 public class Sale {
 
     @Id
@@ -28,6 +26,6 @@ public class Sale {
     @ManyToOne
     private Branch branch;
 
-    @OneToMany(mappedBy = "venta")
+    @OneToMany(mappedBy = "sale", cascade =CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<SaleDetail> detail =  new ArrayList<>();
 }
