@@ -1,5 +1,6 @@
 package Prueba.Tecnica.Supermercado.Java.Spring.Boot.DTOs;
 
+import jakarta.persistence.Entity;
 import lombok.*;
 
 @Getter

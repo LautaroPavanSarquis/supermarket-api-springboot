@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BranchService implements IBranchService {
@@ -40,14 +41,14 @@ public class BranchService implements IBranchService {
     @Override
     public BranchDto UpdateBranch(Long id, BranchDto BranchDto) {
         //Search
-        Branch branch = branchRepository.findById(id)
-                .orElseThrow(() ->new NotFoundException("Branch not found"));
+        Optional <Branch> branch = Optional.of(branchRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Not found")));
 
         //Mod
-        branch.setName(BranchDto.getName());
-        branch.setAddress(BranchDto.getAddress());
+        branch.get().setName(BranchDto.getName());
+        branch.get().setAddress(BranchDto.getAddress());
 
-        return Mapper.toDto(branchRepository.save(branch));
+        return Mapper.toDto(branchRepository.save(branch.get()));
     }
 
 

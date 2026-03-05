@@ -1,29 +1,32 @@
 package Prueba.Tecnica.Supermercado.Java.Spring.Boot.Model;
 
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 public class SaleDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @ManyToOne
-    private Sale Sale;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "saleId")
+    private Sale sale;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name="productId")
     private Product prod;
-
     private Integer productQuantity;
     private Double price;
 }
