@@ -1,0 +1,64 @@
+package com.Api.Service;
+
+
+import com.Api.DTOs.BranchDto;
+import com.Api.Exception.NotFoundException;
+import com.Api.Mappers.Mapper;
+import com.Api.Model.Branch;
+import com.Api.Repository.BranchRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class BranchService implements IBranchService {
+
+    //Dependency Injection
+    @Autowired
+    private BranchRepository branchRepository;
+
+    //CRUD
+    @Override
+    public BranchDto CreateBranch(BranchDto BranchDto) {
+
+        var branch = Branch.builder()
+                .name(BranchDto.getName())
+                .address(BranchDto.getAddress())
+                .build();
+
+        return Mapper.toDto(branchRepository.save(branch));
+    }
+
+    @Override
+    public List<BranchDto> getBranches() {
+
+        return branchRepository.findAll().stream()
+                .map(Mapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public BranchDto UpdateBranch(Long id, BranchDto BranchDto) {
+        //Search
+        Optional<Branch> branch = Optional.of(branchRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Not found")));
+
+        //Mod
+        branch.get().setName(BranchDto.getName());
+        branch.get().setAddress(BranchDto.getAddress());
+
+        return Mapper.toDto(branchRepository.save(branch.get()));
+    }
+
+    @Override
+    public void DeleteBranch(Long id) {
+        //Search
+        Branch branch = branchRepository.findById(id)
+                .orElseThrow(() ->new NotFoundException("Branch not found"));
+
+        branchRepository.delete(branch);
+    }
+
+}
