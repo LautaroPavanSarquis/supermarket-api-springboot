@@ -1,150 +1,114 @@
-Supermarket API
+# Supermarket API
 
-Backend REST API built with Spring Boot to manage a basic supermarket system.
-This project was created to demonstrate backend development skills including REST API design, database integration, and Docker containerization.
+REST API built with **Spring Boot** to manage a simple supermarket system.  
+This project was created to demonstrate backend development skills including:
 
-It provides endpoints to manage:
+- REST API design
+- Database integration with MySQL
+- DTO architecture
+- Docker containerization
+- Local API testing with Postman
 
-Branches
+The API allows managing **branches, products and sales**, persisting all data in a MySQL database.
 
-Products
+---
 
-Sales
+# Tech Stack
 
-The project is fully containerized with Docker and can be executed locally with Docker Compose.
+- Java 21
+- Spring Boot
+- Spring Data JPA / Hibernate
+- MySQL
+- Docker
+- Docker Compose
+- Maven
 
-Tech Stack
-Technology	Purpose
-Java 21	Programming language
-Spring Boot	Backend framework
-Spring Data JPA	Database access
-Hibernate	ORM
-MySQL	Relational database
-Docker	Containerization
-Docker Compose	Multi-container orchestration
-Maven	Dependency management
-Project Architecture
+---
 
-The application follows a layered architecture commonly used in Spring Boot applications.
+# Architecture
 
-Client
-   ↓
-Controller
-   ↓
-Service
-   ↓
-Repository
-   ↓
-MySQL Database
-Package Structure
-api
-├── Controller
-├── DTOs
-├── Exception
-├── Mappers
-├── Model
-├── Repository
-├── Service
-└── resources
-Key Concepts Implemented
+The project follows a layered architecture commonly used in Spring applications:
 
-DTO Pattern
-Separates API responses from database entities.
+Controller → Service → Repository → Database
 
-Service Layer
-Encapsulates business logic.
+Main concepts used:
 
-Repository Layer
-Uses Spring Data JPA to handle persistence.
+- **DTO pattern** to separate API responses from persistence models
+- **Service layer** to encapsulate business logic
+- **Repository layer** using Spring Data JPA
+- **Exception handling** for API responses
+- **Mapper** to convert entities to DTOs
 
-Exception Handling
-Custom exceptions for better API responses.
+---
 
-Entity Mapping
-Entities mapped to database tables using JPA annotations.
+# Running the Project
 
-Running the Project
+The project is fully **Dockerized** and can be run with a single command.
 
-The project is fully dockerized, so the easiest way to run it is using Docker.
+### 1️⃣ Build and start containers
 
-Start the application
+
 docker compose up --build
 
-This command will start:
 
-Spring Boot API container
+This will start:
 
-MySQL database container
+- Spring Boot API
+- MySQL database
 
-Accessing the API
+---
+
+### 2️⃣ API access
 
 Once the containers are running:
 
-http://localhost:8080
-Database
+# Database
 
-The API connects to a MySQL database running in Docker.
+The application uses **MySQL** running inside Docker.
 
-Database configuration is defined through environment variables in:
-
-docker-compose.yml
+Configuration is handled through environment variables defined in `docker-compose.yml`.
 
 The database is automatically created if it does not exist.
 
-Example Endpoints
-Branches
-POST /branches
-GET /branches
-Products
-POST /products
-GET /products
-Sales
-POST /sales
-GET /sales
-API Testing
+# Testing the API
 
-All endpoints were tested locally using Postman.
+The API was tested locally using **Postman**.
 
-Typical workflow tested:
+Typical operations include:
 
-Create branches
+- Create branches
+- Register products
+- Register sales
+- Retrieve stored data
 
-Register products
+All endpoints follow standard REST conventions.
 
-Register sales
+---
 
-Retrieve stored data
-
-Learning Goals
+# Learning Goals
 
 This project was built to practice and demonstrate:
 
-Building REST APIs with Spring Boot
+- Building REST APIs with Spring Boot
+- Working with relational databases
+- Structuring backend applications using layered architecture
+- Containerizing backend applications with Docker
+- Running multi-container environments using Docker Compose
 
-Implementing layered backend architectures
+---
 
-Working with relational databases
+# Future Improvements
 
-Containerizing applications with Docker
+Possible next steps for the project:
 
-Running multi-container environments with Docker Compose
+- Add authentication (Spring Security / JWT)
+- Add integration tests
+- Add API documentation with Swagger
+- Improve validation and error handling
 
-Possible Improvements
 
-Future enhancements could include:
-
-API documentation with Swagger / OpenAPI
-
-Authentication with Spring Security + JWT
-
-Integration and unit tests
-
-Request validation with Bean Validation
-
-Pagination for large datasets
-
-Author
+# Author
 
 Lautaro Pavan
 
-Backend developer focused on Java, Spring Boot and backend architectures.
+Backend developer focused on Java and Spring Boot.
